@@ -1,0 +1,17 @@
+# Python
+*.pyc
+
+# vim
+*.swp
+
+# DB
+*.db
+*.db_snapshot
+
+static/
+*.zip
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
