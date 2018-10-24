@@ -12,16 +12,28 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('RDS_DB_NAME', 'notejam'),
-        'USER': os.getenv('RDS_USERNAME', 'notejam'),
-        'PASSWORD': os.getenv('RDS_PASSWORD', ''),
-        'HOST': os.getenv('RDS_HOSTNAME', '127.0.0.1'),
-        'PORT': os.getenv('RDS_PORT', '5432'),
+if os.getenv('APP_ENV') == 'test':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'notejam.db',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('RDS_DB_NAME', 'notejam'),
+            'USER': os.getenv('RDS_USERNAME', 'notejam'),
+            'PASSWORD': os.getenv('RDS_PASSWORD', ''),
+            'HOST': os.getenv('RDS_HOSTNAME', '127.0.0.1'),
+            'PORT': os.getenv('RDS_PORT', '5432'),
+        }
+    }
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
